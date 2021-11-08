@@ -41,15 +41,15 @@ function reviveEntry(
   entries: SerializedEntry[],
   pointer: number
 ): any {
-  if (entry[0] === 'value') {
+  if (entry[0] === 'v') {
     return entry[1]
-  } else if (entry[0] === 'array') {
+  } else if (entry[0] === 'a') {
     return reviveArray(base, entry, entries, pointer)
-  } else if (entry[0] === 'object') {
+  } else if (entry[0] === 'o') {
     return reviveObject(base, entry, entries, pointer)
-  } else if (entry[0] === 'ref') {
+  } else if (entry[0] === 'r') {
     return reviveRef(base, entry, entries, pointer)
-  } else if (entry[0] === 'keep') {
+  } else if (entry[0] === 'k') {
     return reviveKeep(base, entry, entries, pointer)
   }
 }
@@ -62,7 +62,7 @@ function reviveArray(
 ): any[] {
   const value = find<any[]>(base, entry[2], isArray) ?? ([] as any[])
 
-  entries[pointer] = ['value', value]
+  entries[pointer] = ['v', value]
 
   entry[1].forEach((nextPointer, index) => {
     const nextEntry = entries[nextPointer]
@@ -91,7 +91,7 @@ function reviveObject(
     find<Record<string, any>>(base, entry[2], isObject) ??
     ({} as Record<string, any>)
 
-  entries[pointer] = ['value', value]
+  entries[pointer] = ['v', value]
 
   for (const key in entry[1]) {
     const nextPointer = entry[1][key]
@@ -111,7 +111,7 @@ function reviveRef(
 ): Ref {
   const value = find<Ref>(base, entry[2], isRef) ?? ref()
 
-  entries[pointer] = ['value', value]
+  entries[pointer] = ['v', value]
 
   const nextPointer = entry[1]
   const nextEntry = entries[nextPointer]
@@ -129,7 +129,7 @@ function reviveKeep(
 ): void {
   const value = find<any>(base, entry[1], v => v !== undefined)
 
-  entries[pointer] = ['value', value]
+  entries[pointer] = ['v', value]
 
   return value
 }

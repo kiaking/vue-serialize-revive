@@ -10,17 +10,13 @@ export type SerializedEntry =
   | SerializedRef
   | SerializedKeep
 
-export type SerializedRoot = ['root', Record<string, number>]
-export type SerializedValue = ['value', any]
-export type SerializedArray = ['array', number[], SerializedPaths]
-export type SerializedObject = [
-  'object',
-  Record<string, number>,
-  SerializedPaths
-]
-export type SerializedMap = ['map', [any, number][], SerializedPaths]
-export type SerializedRef = ['ref', number, SerializedPaths]
-export type SerializedKeep = ['keep', SerializedPaths]
+export type SerializedRoot = ['_', Record<string, number>]
+export type SerializedValue = ['v', any]
+export type SerializedArray = ['a', number[], SerializedPaths]
+export type SerializedObject = ['o', Record<string, number>, SerializedPaths]
+export type SerializedMap = ['m', [any, number][], SerializedPaths]
+export type SerializedRef = ['r', number, SerializedPaths]
+export type SerializedKeep = ['k', SerializedPaths]
 
 export type SerializedPaths = SerializedPath[]
 export type SerializedPath = (string | number | SerializedPath)[]
@@ -30,7 +26,7 @@ export function serialize(data: Record<string, any>): SerializedEntry[] {
 
   encode(data, entries, new Map())
 
-  entries[0] = ['root', entries[0][1]]
+  entries[0] = ['_', entries[0][1]]
 
   return entries
 }
@@ -64,7 +60,7 @@ function encode(
   } else if (isObject(data)) {
     encodeObject(data, index, entries, seen, path)
   } else {
-    entries.push(['value', data])
+    entries.push(['v', data])
   }
 
   return index
@@ -82,7 +78,7 @@ function encodeArray(
   const stored = [] as any[]
   const paths = [path]
 
-  entries.push(['array', stored, paths])
+  entries.push(['a', stored, paths])
 
   data.forEach((value, index) => {
     stored[index] = encode(value, entries, seen, [...path, [index]])
@@ -101,7 +97,7 @@ function encodeObject(
   const stored = {} as Record<string, number>
   const paths = [path]
 
-  entries.push(['object', stored, paths])
+  entries.push(['o', stored, paths])
 
   for (const key in data) {
     const value = data[key]
@@ -124,7 +120,7 @@ function encodeRef(
 
   const paths = [path]
 
-  const size = entries.push(['ref', 0, paths])
+  const size = entries.push(['r', 0, paths])
 
   entries[size - 1][1] = encode(data.value, entries, seen, path)
 }
@@ -133,7 +129,7 @@ function encodeKeep(
   entries: SerializedEntry[],
   path: SerializedPath = []
 ): void {
-  entries.push(['keep', [path]])
+  entries.push(['k', [path]])
 }
 
 function isComputed(value: unknown): value is ComputedRef {
