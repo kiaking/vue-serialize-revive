@@ -12,3 +12,4 @@ This is an experimental package to serialize/revive a composable object.
 - [ ] Map
 - [ ] Set
 - [ ] Date
+- [x] Circular reference
