@@ -4,6 +4,9 @@ specifiers:
   '@types/jest': ^27.0.2
   '@vue/reactivity': ^3.2.21
   '@vue/shared': ^3.2.21
+  chalk: ^4.1.2
+  enquirer: ^2.3.6
+  execa: ^5.1.1
   jest: ^27.3.1
   prettier: ^2.4.1
   semver: ^7.3.5
@@ -15,6 +18,9 @@ devDependencies:
   '@types/jest': 27.0.2
   '@vue/reactivity': 3.2.21
   '@vue/shared': 3.2.21
+  chalk: 4.1.2
+  enquirer: 2.3.6
+  execa: 5.1.1
   jest: 27.3.1
   prettier: 2.4.1
   semver: 7.3.5
@@ -831,6 +837,11 @@ packages:
       - supports-color
     dev: true
 
+  /ansi-colors/4.1.1:
+    resolution: {integrity: sha512-JoX0apGbHaUJBNl6yF+p6JAFYZ666/hhCGKN5t9QFjbJQKUU/g8MNbFDbvfrgKXvI1QpZplPOnwIo99lX/AAmA==}
+    engines: {node: '>=6'}
+    dev: true
+
   /ansi-escapes/4.3.2:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}
     engines: {node: '>=8'}
@@ -1232,6 +1243,13 @@ packages:
 
   /emoji-regex/8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
+    dev: true
+
+  /enquirer/2.3.6:
+    resolution: {integrity: sha512-yjNnPr315/FjS4zIsUxYguYUPP2e1NK4d7E7ZOLiyYCcbFBiTMyID+2wvm2w6+pZ/odMA7cRkjhsPbltwBOrLg==}
+    engines: {node: '>=8.6'}
+    dependencies:
+      ansi-colors: 4.1.1
     dev: true
 
   /esbuild-android-arm64/0.13.13:
