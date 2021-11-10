@@ -11,14 +11,12 @@ specifiers:
   typescript: ^4.4.4
   unbuild: ^0.5.11
 
-dependencies:
-  prettier: 2.4.1
-
 devDependencies:
   '@types/jest': 27.0.2
   '@vue/reactivity': 3.2.21
   '@vue/shared': 3.2.21
   jest: 27.3.1
+  prettier: 2.4.1
   semver: 7.3.5
   ts-jest: 27.0.7_2c4ca6574207836d1023f54689cc81ac
   typescript: 4.4.4
@@ -2675,7 +2673,7 @@ packages:
     resolution: {integrity: sha512-9fbDAXSBcc6Bs1mZrDYb3XKzDLm4EXXL9sC1LqKP5rZkT6KRr/rf9amVUcODVXgguK/isJz0d0hP72WeaKWsvA==}
     engines: {node: '>=10.13.0'}
     hasBin: true
-    dev: false
+    dev: true
 
   /pretty-bytes/5.6.0:
     resolution: {integrity: sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==}
